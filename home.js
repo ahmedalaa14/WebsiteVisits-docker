@@ -1,11 +1,15 @@
 const express = require('express');
 const redis = require('redis');
 const app = express();
-const clinet = redis.createClient();
+const client = redis.createClient({
+    host:'redis',
+    port: 6379
+});
+client.set('visitsCounter' , 0);
 app.get( '/',(req, res) => {
-    clinet.get('visitsCounter', (err,visitsCounter) => {
+    client.get('visitsCounter', (err,visitsCounter) => {
         res.send('Visits Counter :' +visitsCounter);
-        clinet.send('visitsCounter', parseInt(visitsCounter) +1)
+        client.set('visitsCounter', parseInt(visitsCounter) + 1)
 
 
     })
