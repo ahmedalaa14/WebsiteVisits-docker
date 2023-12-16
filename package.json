@@ -1,0 +1,10 @@
+{
+    "dependencies": {
+        "expres": "*",
+        "redis": "3.1.2"
+    },
+    "scripts": {
+            "start":"node home.js"
+        
+    }
+}
